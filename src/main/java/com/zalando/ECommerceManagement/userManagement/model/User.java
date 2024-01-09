@@ -16,8 +16,8 @@ public class User {
     private Integer id;
     @NotNull(message = "The Name should not be Null.")
     private String name;
-    @NotNull(message = "The Email should not be Null")
+    @NotNull(message = "The Email should not be Null.")
     private String email;
-    @NotNull(message = "The Password should not Null")
+    @NotNull(message = "The Password should not Null.")
     private String password;
 }
