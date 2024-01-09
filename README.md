@@ -81,6 +81,10 @@ http://localhost:8080/swagger-ui/index.html
 
 <img width="1430" alt="Screenshot 2024-01-09 at 22 34 39" src="https://github.com/netabirami/FinalProject/assets/144056783/f3973543-4e62-479e-87e2-57597f56aa07">
 
+## Database Tables 
+
+<img width="595" alt="Screenshot 2024-01-09 at 22 39 03" src="https://github.com/netabirami/FinalProject/assets/144056783/dde470e2-33ad-4db8-8bfc-cc4f581c5fbb">
+
 
 ## Evaluation Criteria
 
