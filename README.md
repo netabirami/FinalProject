@@ -74,6 +74,12 @@ You have been assigned the task of developing a functional e-commerce shop backe
     - Setup instructions
     - Usage examples for all API endpoints
     - Any assumptions or decisions made during development
+  
+## Swagger Documentation 
+
+http://localhost:8080/swagger-ui/index.html
+
+
 
 ## Evaluation Criteria
 
