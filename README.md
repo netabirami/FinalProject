@@ -79,6 +79,7 @@ You have been assigned the task of developing a functional e-commerce shop backe
 
 http://localhost:8080/swagger-ui/index.html
 
+<img width="1430" alt="Screenshot 2024-01-09 at 22 34 39" src="https://github.com/netabirami/FinalProject/assets/144056783/f3973543-4e62-479e-87e2-57597f56aa07">
 
 
 ## Evaluation Criteria
