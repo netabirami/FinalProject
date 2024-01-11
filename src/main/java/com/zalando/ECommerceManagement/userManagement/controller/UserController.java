@@ -23,9 +23,7 @@ public class UserController {
 
     @PostMapping
     public User addUser(@Valid @RequestBody User user) {
-//       String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-//       user.setPassword(encodedPassword);
-//       User createdUser = userRepository.save(user); TODO
+
         return userService.createUser(user);
     }
 

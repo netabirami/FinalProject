@@ -3,6 +3,7 @@ package com.zalando.ECommerceManagement.userManagement.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+
 @Entity
 @Table(name = "user")
 @Getter
