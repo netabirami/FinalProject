@@ -13,19 +13,16 @@ import java.util.List;
 @Validated
 @RequestMapping("/users")
 public class UserController {
-   @Autowired
+    @Autowired
     private UserService userService;
 
-   @GetMapping
-    public List<User> getAllUsers(){
-       return userService.getAllUsers();
-   }
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
 
-   @PostMapping
-    public User addUser ( @Valid  @RequestBody User user){
-//       String encodedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
-//       user.setPassword(encodedPassword);
-//       User createdUser = userRepository.save(user); TODO
-       return userService.createUser(user);
-   }
+    @PostMapping
+    public User addUser(@Valid @RequestBody User user) {
+        return userService.createUser(user);
+    }
 }
