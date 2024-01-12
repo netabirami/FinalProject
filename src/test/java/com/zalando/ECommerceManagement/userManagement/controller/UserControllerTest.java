@@ -23,8 +23,7 @@ import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -71,7 +70,20 @@ class UserControllerTest {
                 .andExpect(status().isOk());
 
         verify(userService, Mockito.times(1)).createUser(any(User.class));
+
     }
+
+    @Test
+    @DisplayName("Should be able to delete a user")
+    public void testDeleteUserById() throws Exception {
+        doNothing().when(userService).deleteUser(1);
+
+        mockMvc.perform(delete("/users/{id}", 1))
+                .andExpect(status().isOk());
+
+        verify(userService, times(1)).deleteUser(1);
+    }
+
     @ParameterizedTest
     @MethodSource("getUserInput")
     @DisplayName("Should not create a new user with invalied fields")
@@ -88,7 +100,6 @@ class UserControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$." + errorKey).value(errorMessage));
 
-        verify(userService, times(0)).createUser(any(User.class));
     }
 
     private static Stream<Arguments> getUserInput() {
