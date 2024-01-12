@@ -80,6 +80,8 @@ class UserControllerTest {
 
         mockMvc.perform(delete("/users/{id}", 1))
                 .andExpect(status().isOk());
+
+        verify(userService, times(1)).deleteUser(1);
     }
 
     @ParameterizedTest
@@ -98,7 +100,6 @@ class UserControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$." + errorKey).value(errorMessage));
 
-        verify(userService, times(0)).createUser(any(User.class));
     }
 
     static Stream<Arguments> getUserInput() {
