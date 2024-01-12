@@ -102,7 +102,7 @@ class UserControllerTest {
 
     }
 
-    static Stream<Arguments> getUserInput() {
+    private static Stream<Arguments> getUserInput() {
         return Stream.of(
                 Arguments.of(new User(
                                 null,
