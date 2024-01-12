@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
         });
         return errors;
     }
+
     @ExceptionHandler({InvalidMethodArgumentException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleInvalidMethodArgumentException(InvalidMethodArgumentException ex) {
