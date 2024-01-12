@@ -91,7 +91,7 @@ class UserControllerTest {
         verify(userService, times(0)).createUser(any(User.class));
     }
 
-    static Stream<Arguments> getUserInput() {
+    private static Stream<Arguments> getUserInput() {
         return Stream.of(
                 Arguments.of(new User(
                                 null,
