@@ -16,17 +16,14 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
     public Product getProductById(Integer id) {
         return productRepository.findById(id).orElseThrow(
                 () -> new NoSuchElementException("Product not found with ID:" + id)
         );
-
     }
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
     public Product createProduct(Product product) {
         return productRepository.save(product);
     }

@@ -13,25 +13,31 @@ import java.util.List;
 @Validated
 @RequestMapping("/products")
 public class ProductController {
-    @Autowired
+
     private ProductService productService;
 
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
     @GetMapping
-    public List<Product> getAllProduct(){
+    public List<Product> getAllProduct() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public  Product getProductById (@PathVariable Integer id){
+    public Product getProductById(@PathVariable Integer id) {
         return productService.getProductById(id);
     }
+
     @GetMapping("/byIds")
-    public  List<Product> getProductsByIds (@RequestParam List<Integer> ids){
+    public List<Product> getProductsByIds(@RequestParam List<Integer> ids) {
         return productService.getProductsByIds(ids);
     }
 
     @PostMapping
-    public Product addProduct (@Valid @RequestBody Product product){
-        return productService .createProduct(product);
+    public Product addProduct(@Valid @RequestBody Product product) {
+        return productService.createProduct(product);
     }
 }
