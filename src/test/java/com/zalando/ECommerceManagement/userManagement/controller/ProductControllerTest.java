@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -123,7 +122,7 @@ public class ProductControllerTest {
         Product newproduct = new Product(1,
                 "speaker"
                 , 500.89,
-                "jbl speaker go3",
+                "jbl speaker go 3",
                 20);
         String jsonRequest = new ObjectMapper().writeValueAsString(newproduct);
 
@@ -135,5 +134,30 @@ public class ProductControllerTest {
                 .andExpect(status().isOk());
 
         verify(productService, times(1)).createProduct(any(Product.class));
+    }
+
+    @Test
+    @DisplayName("Should be able to update an existing Product")
+    public void testUpdateProduct() throws Exception {
+        Product existingProduct = new Product(
+                1,
+                "micro oven",
+                599.99,
+                "450 watt",
+                10);
+        when(productService.getProductById(1)).thenReturn(existingProduct);
+        when(productService.updateProduct(existingProduct)).thenReturn(existingProduct);
+        existingProduct.setName("micro oven");
+        existingProduct.setPrice(599.99);
+        existingProduct.setDescription("450 watt");
+        existingProduct.setStock(10);
+
+        String jsonRequest = new ObjectMapper().writeValueAsString(existingProduct);
+        mockMvc.perform(put("/products/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isOk());
+
+        verify(productService, times(1)).updateProduct(any(Product.class));
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @Validated
@@ -39,5 +40,18 @@ public class ProductController {
     @PostMapping
     public Product addProduct(@Valid @RequestBody Product product) {
         return productService.createProduct(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@Valid @PathVariable Integer id, @RequestBody Product updateProduct) {
+        Product existingProduct = productService.getProductById(id);
+        if (existingProduct == null) {
+            throw new NoSuchElementException("Product ID not Found" + id);
+        }
+        existingProduct.setName(updateProduct.getName());
+        existingProduct.setDescription(updateProduct.getDescription());
+        existingProduct.setPrice(updateProduct.getPrice());
+        existingProduct.setStock(updateProduct.getStock());
+        return productService.updateProduct(existingProduct);
     }
 }

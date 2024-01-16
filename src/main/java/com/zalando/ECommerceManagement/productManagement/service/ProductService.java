@@ -30,4 +30,7 @@ public class ProductService {
     public List<Product> getProductsByIds(List<Integer> ids) {
         return productRepository.findAllById(ids);
     }
+    public Product updateProduct(Product product){
+       return productRepository.save(product);
+    }
 }
