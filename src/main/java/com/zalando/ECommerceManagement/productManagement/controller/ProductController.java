@@ -1,5 +1,6 @@
 package com.zalando.ECommerceManagement.productManagement.controller;
 
+import com.zalando.ECommerceManagement.productManagement.exception.ProductNotFoundException;
 import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.productManagement.service.ProductService;
 import jakarta.validation.Valid;
@@ -8,7 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @Validated
@@ -46,7 +46,7 @@ public class ProductController {
     public Product updateProduct(@Valid @PathVariable Integer id, @RequestBody Product updateProduct) {
         Product existingProduct = productService.getProductById(id);
         if (existingProduct == null) {
-            throw new NoSuchElementException("Product ID not Found" + id);
+            throw new ProductNotFoundException("Product ID not Found" + id);
         }
         existingProduct.setName(updateProduct.getName());
         existingProduct.setDescription(updateProduct.getDescription());
