@@ -160,4 +160,15 @@ public class ProductControllerTest {
 
         verify(productService, times(1)).updateProduct(any(Product.class));
     }
+
+    @Test
+    @DisplayName("Should be able to delete a product by ID")
+    public void testDeleteProductById() throws Exception {
+        doNothing().when(productService).deleteProduct(1);
+
+        mockMvc.perform(delete("/products/{id}", 1))
+                .andExpect(status().isOk());
+
+        verify(productService, times(1)).deleteProduct(1);
+    }
 }
