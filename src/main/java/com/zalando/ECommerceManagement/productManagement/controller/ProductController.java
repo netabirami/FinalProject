@@ -1,5 +1,6 @@
 package com.zalando.ECommerceManagement.productManagement.controller;
 
+import com.zalando.ECommerceManagement.productManagement.exception.ProductNotFoundException;
 import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.productManagement.service.ProductService;
 import jakarta.validation.Valid;
@@ -39,5 +40,15 @@ public class ProductController {
     @PostMapping
     public Product addProduct(@Valid @RequestBody Product product) {
         return productService.createProduct(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@Valid @PathVariable Integer id, @RequestBody Product updateProduct) {
+        Product existingProduct = productService.getProductById(id);
+        existingProduct.setName(updateProduct.getName());
+        existingProduct.setDescription(updateProduct.getDescription());
+        existingProduct.setPrice(updateProduct.getPrice());
+        existingProduct.setStock(updateProduct.getStock());
+        return productService.updateProduct(existingProduct);
     }
 }

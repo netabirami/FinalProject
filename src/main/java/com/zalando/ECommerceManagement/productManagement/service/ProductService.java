@@ -1,5 +1,6 @@
 package com.zalando.ECommerceManagement.productManagement.service;
 
+import com.zalando.ECommerceManagement.productManagement.exception.ProductNotFoundException;
 import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.productManagement.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class ProductService {
     }
     public Product getProductById(Integer id) {
         return productRepository.findById(id).orElseThrow(
-                () -> new NoSuchElementException("Product not found with ID:" + id)
+                () -> new ProductNotFoundException("Product-ID", "Product not found with ID : " + id)
         );
     }
     public List<Product> getAllProducts() {
@@ -29,5 +30,8 @@ public class ProductService {
     }
     public List<Product> getProductsByIds(List<Integer> ids) {
         return productRepository.findAllById(ids);
+    }
+    public Product updateProduct(Product product){
+       return productRepository.save(product);
     }
 }
