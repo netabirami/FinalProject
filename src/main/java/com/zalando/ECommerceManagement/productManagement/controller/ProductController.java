@@ -45,9 +45,6 @@ public class ProductController {
     @PutMapping("/{id}")
     public Product updateProduct(@Valid @PathVariable Integer id, @RequestBody Product updateProduct) {
         Product existingProduct = productService.getProductById(id);
-        if (existingProduct == null) {
-            throw new ProductNotFoundException("Product-Id", "Product ID not Found : " + id);
-        }
         existingProduct.setName(updateProduct.getName());
         existingProduct.setDescription(updateProduct.getDescription());
         existingProduct.setPrice(updateProduct.getPrice());
