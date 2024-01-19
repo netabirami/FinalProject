@@ -51,4 +51,8 @@ public class ProductController {
         existingProduct.setStock(updateProduct.getStock());
         return productService.updateProduct(existingProduct);
     }
+    @DeleteMapping("/{id}")
+    public void deleteProduct (@PathVariable Integer id){
+        productService.deleteProduct(id);
+    }
 }
