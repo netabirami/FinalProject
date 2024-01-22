@@ -86,7 +86,7 @@ class UserControllerTest {
 
     @ParameterizedTest
     @MethodSource("getUserInput")
-    @DisplayName("Should not create a new user with invalied fields")
+    @DisplayName("Should not create a new user with invalid fields")
     public void testInvalidUserFields(
             User newUser,
             String errorKey,
