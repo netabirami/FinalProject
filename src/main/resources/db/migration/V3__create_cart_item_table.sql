@@ -1,14 +1,14 @@
 CREATE TABLE cart (
-    cart_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 CREATE TABLE cart_item (
-    cart_item_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    cart_id BIGINT,
-    product_id BIGINT,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT,
+    product_id INT,
     quantity INT NOT NULL,
-    FOREIGN KEY (cart_id) REFERENCES cart(cart_id),
-    FOREIGN KEY (product_id) REFERENCES product(product_id)
+    FOREIGN KEY (cart_id) REFERENCES cart(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
 );
