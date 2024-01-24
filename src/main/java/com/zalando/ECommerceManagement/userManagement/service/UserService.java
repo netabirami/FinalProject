@@ -1,5 +1,6 @@
 package com.zalando.ECommerceManagement.userManagement.service;
 
+import com.zalando.ECommerceManagement.userManagement.exception.UserNotFoundException;
 import com.zalando.ECommerceManagement.userManagement.model.User;
 import com.zalando.ECommerceManagement.userManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,11 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+    public User getUserById(Integer id) {
+        return userRepository.findById(id).orElseThrow(
+                () -> new UserNotFoundException("User-ID", "User not found with ID : " + id)
+        );
     }
 
     public User createUser(User user) {

@@ -21,4 +21,6 @@ public class User {
     private String email;
     @NotNull(message = "The Password should not Null.")
     private String password;
+
+
 }
