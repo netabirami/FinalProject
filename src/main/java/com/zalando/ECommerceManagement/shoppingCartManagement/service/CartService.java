@@ -1,12 +1,16 @@
 package com.zalando.ECommerceManagement.shoppingCartManagement.service;
 
+import com.zalando.ECommerceManagement.productManagement.exception.ProductNotFoundException;
+import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.shoppingCartManagement.controller.CartController;
+import com.zalando.ECommerceManagement.shoppingCartManagement.exception.CartNotFoundException;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.Cart;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartDto;
 import com.zalando.ECommerceManagement.shoppingCartManagement.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.undo.CannotRedoException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +35,18 @@ public class CartService {
         }
         return cartDtos;
     }
+
+    public CartDto getCartById(Integer id) {
+       Cart existingCart = cartRepository.findById(id).orElseThrow(
+                () -> new CartNotFoundException("Cart-ID", "Cart not found with ID : " + id));
+       CartDto cartDto = new CartDto(existingCart.getId(),existingCart.getUser().getId());
+       return cartDto;
+
+    }
+    public void deleteCart(Integer id) {
+        cartRepository.deleteById(id);
+    }
+
+
 }
 

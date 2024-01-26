@@ -35,8 +35,19 @@ public class CartController {
         Cart cartFromDb = cartService.createCart(newCart);
         return new CartDto(cartFromDb.getId(), cartDto.getUserId());
     }
+
     @GetMapping
     public List<CartDto> getAllCart() {
         return cartService.getAllCart();
+    }
+
+    @GetMapping("/{id}")
+    public CartDto getCartById(@PathVariable Integer id) {
+        return cartService.getCartById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCart(@PathVariable Integer id) {
+        cartService.deleteCart(id);
     }
 }
