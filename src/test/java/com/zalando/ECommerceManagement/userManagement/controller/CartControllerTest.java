@@ -15,15 +15,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.reflect.Array.get;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -78,6 +77,34 @@ public class CartControllerTest {
                 .andExpect(jsonPath("$[1].userId").value(2));
 
         verify(cartService, times(1)).getAllCart();
+    }
+
+    @Test
+    @DisplayName("Should be able to get one product")
+    public void testGetProductById() throws Exception {
+
+      CartDto cartDto = new CartDto(1,1);
+
+        when(cartService.getCartById(1)).thenReturn(cartDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/cart/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.userId").value(1));
+
+        verify(cartService, times(1)).getCartById(1);
+    }
+
+    @Test
+    @DisplayName("Should be able to delete a cart by ID")
+    public void testDeleteCartById() throws Exception {
+        doNothing().when(cartService).deleteCart(1);
+
+        mockMvc.perform(delete("/cart/{id}", 1))
+                .andExpect(status().isOk());
+
+        verify(cartService, times(1)).deleteCart(1);
     }
 }
 
