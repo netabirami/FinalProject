@@ -1,14 +1,19 @@
 package com.zalando.ECommerceManagement.userManagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.shoppingCartManagement.controller.CartController;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.Cart;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartDto;
 import com.zalando.ECommerceManagement.shoppingCartManagement.service.CartService;
 import com.zalando.ECommerceManagement.userManagement.model.User;
 import com.zalando.ECommerceManagement.userManagement.service.UserService;
+import jakarta.validation.constraints.Null;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,9 +21,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -83,7 +90,7 @@ public class CartControllerTest {
     @DisplayName("Should be able to get one product")
     public void testGetProductById() throws Exception {
 
-      CartDto cartDto = new CartDto(1,1);
+        CartDto cartDto = new CartDto(1, 1);
 
         when(cartService.getCartById(1)).thenReturn(cartDto);
 
@@ -106,6 +113,32 @@ public class CartControllerTest {
 
         verify(cartService, times(1)).deleteCart(1);
     }
+
+    @ParameterizedTest
+    @MethodSource("getCartInput")
+    @DisplayName("Should not create a new product with null fields")
+    public void testInvalidCartFields(
+            CartDto newCartDto,
+            String errorKey,
+            String errorMessage) throws Exception {
+        String jsonRequest = new ObjectMapper().writeValueAsString(newCartDto);
+        mockMvc.perform(post("/cart").contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$." + errorKey).value(errorMessage));
+
+        verify(cartService, times(0)).createCart(any(Cart.class));
+    }
+
+    private static Stream<Arguments> getCartInput() {
+        return Stream.of(Arguments.of(new CartDto(
+                                null, 2),
+                        "id", "The id should not be null"),
+                Arguments.of(new CartDto(1, null
+                        ),
+                        "userId", "The userId should not be null"));
+    }
+
 }
 
 
