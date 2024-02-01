@@ -1,7 +1,5 @@
 package com.zalando.ECommerceManagement.shoppingCartManagement.service;
 
-import com.zalando.ECommerceManagement.productManagement.model.Product;
-import com.zalando.ECommerceManagement.shoppingCartManagement.exception.CartItemNotFoundException;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartItem;
 import com.zalando.ECommerceManagement.shoppingCartManagement.repository.CartItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +27,5 @@ public class CartItemService {
     public void deleteCartItem(Integer id) {
         cartItemRepository.deleteById(id);
 
-    }
-
-    public CartItem getCartItemById(Integer id) {
-        return cartItemRepository.findById(id).orElseThrow(
-                ()-> new CartItemNotFoundException("CartItem - Id", "CartItem not found with ID:" +id)
-        );
-    }
-
-
-    public CartItem updateCartItem(CartItem existingCartItem) {
-        return cartItemRepository.save(existingCartItem);
     }
 }
