@@ -1,14 +1,12 @@
 package com.zalando.ECommerceManagement.userManagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.shoppingCartManagement.controller.CartController;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.Cart;
-import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartDto;
+import com.zalando.ECommerceManagement.shoppingCartManagement.dto.CartDto;
 import com.zalando.ECommerceManagement.shoppingCartManagement.service.CartService;
 import com.zalando.ECommerceManagement.userManagement.model.User;
 import com.zalando.ECommerceManagement.userManagement.service.UserService;
-import jakarta.validation.constraints.Null;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
