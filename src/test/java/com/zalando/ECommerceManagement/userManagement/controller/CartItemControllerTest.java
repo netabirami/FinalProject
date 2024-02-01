@@ -85,5 +85,22 @@ public class CartItemControllerTest {
         verify(cartItemService, times(1)).deleteCartItem(1);
     }
 
+    @Test
+    @DisplayName("Should be able to update an Existing Quanity")
+    public void testUpdateCartItem()throws Exception{
+        CartItem existingCartItem = new CartItem(1,1,1,10);
+        when (cartItemService.getCartItemById(1)).thenReturn(existingCartItem);
+        when(cartItemService.updateCartItem(existingCartItem)).thenReturn(existingCartItem);
+        existingCartItem.setQuantity(11);
+        String jsonRequest = new ObjectMapper().writeValueAsString(existingCartItem);
+        mockMvc.perform(put("/cartItem/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonRequest))
+                .andExpect(status().isOk());
+
+        verify(cartItemService, times(1)).updateCartItem(any(CartItem.class));
+
+    }
+
 }
 

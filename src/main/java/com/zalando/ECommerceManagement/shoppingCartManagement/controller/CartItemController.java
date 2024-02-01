@@ -1,5 +1,6 @@
 package com.zalando.ECommerceManagement.shoppingCartManagement.controller;
 
+import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartItem;
 import com.zalando.ECommerceManagement.shoppingCartManagement.service.CartItemService;
 import jakarta.validation.Valid;
@@ -34,6 +35,13 @@ public class CartItemController {
     @DeleteMapping("/{id}")
     public void deleteCartItem (@PathVariable Integer id){
         cartItemService.deleteCartItem(id);
+    }
+
+    @PutMapping("/{id}")
+    public CartItem updateCartItem(@PathVariable Integer id, @Valid @RequestBody CartItem updateCartItem) {
+        CartItem existingCartItem = cartItemService.getCartItemById(id);
+        existingCartItem.setQuantity(updateCartItem.getQuantity());
+        return cartItemService.updateCartItem(existingCartItem);
     }
 
 }
