@@ -1,16 +1,12 @@
 package com.zalando.ECommerceManagement.shoppingCartManagement.service;
 
-import com.zalando.ECommerceManagement.productManagement.exception.ProductNotFoundException;
-import com.zalando.ECommerceManagement.productManagement.model.Product;
-import com.zalando.ECommerceManagement.shoppingCartManagement.controller.CartController;
 import com.zalando.ECommerceManagement.shoppingCartManagement.exception.CartNotFoundException;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.Cart;
-import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartDto;
+import com.zalando.ECommerceManagement.shoppingCartManagement.model.dto.CartDto;
 import com.zalando.ECommerceManagement.shoppingCartManagement.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.undo.CannotRedoException;
 import java.util.ArrayList;
 import java.util.List;
 

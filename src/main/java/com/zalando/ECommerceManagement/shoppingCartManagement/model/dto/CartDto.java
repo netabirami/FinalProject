@@ -1,4 +1,4 @@
-package com.zalando.ECommerceManagement.shoppingCartManagement.model;
+package com.zalando.ECommerceManagement.shoppingCartManagement.model.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

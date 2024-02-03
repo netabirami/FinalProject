@@ -27,5 +27,4 @@ public class Product {
     private String description;
     @NotNull(message = "The stock should not be null")
     private Integer stock;
-
 }
