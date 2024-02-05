@@ -1,6 +1,5 @@
 package com.zalando.ECommerceManagement.shoppingCartManagement.service;
 
-import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.shoppingCartManagement.exception.CartItemNotFoundException;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.CartItem;
 import com.zalando.ECommerceManagement.shoppingCartManagement.repository.CartItemRepository;
@@ -36,7 +35,9 @@ public class CartItemService {
                 ()-> new CartItemNotFoundException("CartItem - Id", "CartItem not found with ID:" +id)
         );
     }
-
+    public List<CartItem> getCartItemsById(Integer id) {
+        return cartItemRepository.findByCartId(id);
+    }
 
     public CartItem updateCartItem(CartItem existingCartItem) {
         return cartItemRepository.save(existingCartItem);
