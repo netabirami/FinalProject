@@ -40,7 +40,7 @@ public class CartViewControllerTest {
         when(cartItemService.getCartItemsById(1)).thenReturn(mockCartItem);
 
         List<Product> mockProduct = new ArrayList<>();
-        Product mockProducts = new Product(1, "phone", 222.00, "12ich phone", 10);
+        Product mockProducts = new Product(1, "phone", 222.00, "12inch phone", 10);
         mockProduct.add(mockProducts);
         when(productService.getProductsByIds(List.of(1))).thenReturn(mockProduct);
 
