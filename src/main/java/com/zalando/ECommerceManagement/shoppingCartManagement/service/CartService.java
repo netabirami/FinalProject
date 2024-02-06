@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class CartService {
-    private CartRepository cartRepository;
+    private final CartRepository cartRepository;
 
     @Autowired
     public CartService(CartRepository cartRepository) {
