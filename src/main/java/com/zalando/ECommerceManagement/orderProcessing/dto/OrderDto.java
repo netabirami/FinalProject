@@ -1,8 +1,6 @@
 package com.zalando.ECommerceManagement.orderProcessing.dto;
 
-import com.zalando.ECommerceManagement.orderProcessing.model.Order;
 import com.zalando.ECommerceManagement.orderProcessing.model.OrderStatus;
-import com.zalando.ECommerceManagement.shoppingCartManagement.model.Cart;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.dto.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,17 +18,4 @@ public class OrderDto {
     private OrderStatus orderStatus;
     private List<ProductDto> products;
     private Double totalPrice;
-
-
-    public void setOrderId(Integer orderId) {
-
-    }
-
-    public Integer getId() {
-        return null;
-    }
-
-    public Cart getCart() {
-        return null;
-    }
 }
