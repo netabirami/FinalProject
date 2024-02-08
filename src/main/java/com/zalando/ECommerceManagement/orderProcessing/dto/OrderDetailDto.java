@@ -17,4 +17,6 @@ public class OrderDetailDto {
     private List <ProductDto> products;
     private  Double totalPrice;
     private String orderStatus;
+
+
 }
