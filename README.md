@@ -14,6 +14,9 @@ You have been assigned the task of developing a functional e-commerce shop backe
 - **Database:** MySQL
 - **Version Control:** Git (Maintain a repository with regular commits)
 
+### 1.1 ECommerce Application - Design 
+<img width="1079" alt="Screenshot 2024-02-08 at 22 29 52" src="https://github.com/netabirami/FinalProject/assets/144056783/9afeb736-309b-473d-b328-b27c10a07054">
+
 ### 2. Core Features
 
 #### 2.1. User Management
