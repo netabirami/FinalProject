@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  ecommerce_container:
+    image: netabirami/ecommerce-spring-boot:latest
+    container_name: ecommerce_container
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_container:3306/ecommerce?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12345678
+    depends_on:
+      - mysql_container
+    networks:
+      ecommerce-mysql-net:
+
+  mysql_container:
+    image: mysql:8.1.0
+    container_name: mysql_container
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: ecommerce
+      MYSQL_USER: ecommerceUser
+      MYSQL_PASSWORD: 12345678
+    ports:
+      - 3307:3306
+    networks:
+      ecommerce-mysql-net:
+
+networks:
+  ecommerce-mysql-net:
+    driver: bridge

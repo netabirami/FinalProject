@@ -53,7 +53,7 @@ public class CartViewControllerTest {
                 .andExpect(jsonPath("$.items[0].id").value(1))
                 .andExpect(jsonPath("$.items[0].name").value("phone"))
                 .andExpect(jsonPath("$.items[0].price").value(222.00))
-                .andExpect(jsonPath("$.items[0].description").value("12ich phone"));
+                .andExpect(jsonPath("$.items[0].description").value("12inch phone"));
 
         verify(cartItemService, times(1)).getCartItemsById(1);
         verify(productService, times(1)).getProductsByIds(List.of(1));
