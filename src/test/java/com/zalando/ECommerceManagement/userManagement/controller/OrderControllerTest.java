@@ -48,7 +48,6 @@ public class OrderControllerTest {
         OrderDto orderDto = new OrderDto(
                 1,
                 OrderStatus.PLACED,
-                List.of(newProductDto),
                 300.0
         );
         String postRequestBody = new ObjectMapper().writeValueAsString(orderDto);
@@ -58,7 +57,7 @@ public class OrderControllerTest {
         when(cartRepository.findById(any())).thenReturn(Optional.of(cart));
         when(orderService.createOrder(any())).thenReturn(order);
 
-        mockMvc.perform(post("/order")
+        mockMvc.perform(post("/order/checkout")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(postRequestBody))
                 .andExpect(status().isOk());

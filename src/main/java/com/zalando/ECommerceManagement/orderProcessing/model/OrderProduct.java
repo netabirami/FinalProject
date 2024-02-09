@@ -15,21 +15,20 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "order_product")
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
+    @OneToOne
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "order_status", nullable = false)
-    private OrderStatus orderStatus;
+    @OneToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
-    @OneToMany
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private List<OrderProduct> products;
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
 }
