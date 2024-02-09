@@ -2,6 +2,8 @@ package com.zalando.ECommerceManagement.orderProcessing.controller;
 
 import com.zalando.ECommerceManagement.orderProcessing.dto.OrderDetailDto;
 import com.zalando.ECommerceManagement.orderProcessing.dto.OrderDto;
+import com.zalando.ECommerceManagement.orderProcessing.model.Order;
+import com.zalando.ECommerceManagement.orderProcessing.model.OrderStatus;
 import com.zalando.ECommerceManagement.orderProcessing.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -27,6 +29,14 @@ public class OrderController {
     @GetMapping("/{id}")
     public OrderDetailDto orderDetailDto(@PathVariable Integer id) {
         return orderService.getOrderDetails(id);
+    }
+
+    @PutMapping("/{orderId}/status")
+    public String updateOrderStatus(
+            @PathVariable Integer orderId,
+            @RequestParam OrderStatus status) {
+        orderService.updateOrderStatus(orderId, status);
+        return "Order status updated successfully.";
     }
 }
 
