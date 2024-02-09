@@ -22,7 +22,7 @@ public class OrderController {
     private final CartRepository cartRepository;
 
     @Autowired
-    public OrderController(OrderService orderService, CartRepository cartRepository, ProductService productService, CartItemService cartItemService) {
+    public OrderController(OrderService orderService, CartRepository cartRepository) {
         this.orderService = orderService;
         this.cartRepository = cartRepository;
     }
