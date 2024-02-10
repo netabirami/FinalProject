@@ -21,15 +21,18 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: Deploy to Heroku
-        uses: AkhileshNS/heroku-deploy@v3.13.15
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
-          heroku_app_name: ${{secrets.HEROKU_APP}}
+      - name: Abi learning CICD
+        run:  echo learning CICD - for interview
+
+#      - name: Deploy to Heroku
+#        uses: AkhileshNS/heroku-deploy@v3.13.15
+#        with:
+#          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#          heroku_email: ${{secrets.HEROKU_EMAIL}}
+#          heroku_app_name: ${{secrets.HEROKU_APP}}
 #          procfile: "web: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar"
-        env:
-          SPRING_PROFILES_ACTIVE: h2
+#        env:
+#          SPRING_PROFILES_ACTIVE: h2
 
 
 
