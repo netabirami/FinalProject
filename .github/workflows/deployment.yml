@@ -27,7 +27,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: ${{secrets.HEROKU_APP}}
-          procfile: "web: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar"
+#          procfile: "web: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar"
         env:
           SPRING_PROFILES_ACTIVE: h2
 
