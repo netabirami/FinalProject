@@ -20,11 +20,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: Run Java JAR on Heroku
-        env:
-          SPRING_PROFILES_ACTIVE: h2
-        run: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar
-
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
         run: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar
