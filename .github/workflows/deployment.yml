@@ -26,14 +26,16 @@ jobs:
         run: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar
 
       - name: Deploy to Heroku
-        env:
-          SPRING_PROFILES_ACTIVE: h2
         uses: AkhileshNS/heroku-deploy@v3.12.12
         run: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           heroku_app_name: ${{secrets.HEROKU_APP}}
+          procfile: "java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar"
+        env:
+          SPRING_PROFILES_ACTIVE: h2
+
 
 
 
