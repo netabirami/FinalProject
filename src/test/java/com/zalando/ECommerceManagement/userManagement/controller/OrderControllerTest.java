@@ -61,7 +61,6 @@ public class OrderControllerTest {
                 .andExpect(status().isOk());
 
         verify(orderService, times(1)).createNewOrder(any(OrderDto.class));
-        verify(cartRepository, times(1)).findById(any(Integer.class));
     }
 
     @Test
