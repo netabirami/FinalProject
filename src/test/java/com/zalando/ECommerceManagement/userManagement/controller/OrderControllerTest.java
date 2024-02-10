@@ -51,7 +51,7 @@ public class OrderControllerTest {
         String postRequestBody = new ObjectMapper().writeValueAsString(orderDto);
 
         Cart cart = new Cart(1, new User());
-        Order order = new Order(1,cart,OrderStatus.PLACED, List.of());
+        Order order = new Order(1,cart,OrderStatus.PLACED, List.of(), null);
         when(cartRepository.findById(any())).thenReturn(Optional.of(cart));
         when(orderService.createNewOrder(any())).thenReturn(order);
 
