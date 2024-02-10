@@ -4,7 +4,7 @@
 
 You have been assigned the task of developing a functional e-commerce shop backend system. This API will act as the backbone, managing various aspects ranging from product management to order processing. Its purpose is to interact with front-end applications, allowing users to browse products, add them to a cart, and place orders.
 
-<img width="1357" alt="Screenshot 2024-02-10 at 20 29 48" src="https://github.com/netabirami/FinalProject/assets/144056783/5ad8dc4d-73fe-4a27-bcfa-e9320253c058">
+<img width="1353" alt="Screenshot 2024-02-10 at 22 40 39" src="https://github.com/netabirami/FinalProject/assets/144056783/85a2795c-31a0-455c-85b3-b35ed5cde30e">
 
 ## Requirements
 
