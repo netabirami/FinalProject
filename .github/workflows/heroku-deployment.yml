@@ -1,18 +1,19 @@
 name: Ecommerce Spring Boot Application Deploying To Heroku
 on:
   push:
-    branches: [ master ]
+    branches: [ SCRUM-52-deploy-the-app-docker-to-heroku ]
 jobs:
   build:
-runs-on: ubuntu-latest
-steps:
-  - uses: actions/checkout@v2
-  - name: Deploy to Heroku
-    uses: AkhileshNS/heroku-deploy@v3.12.12
-    with:
-      # This will be used for authentication. You can find it in your heroku homepage account settings
-      heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-      # Email that you use with heroku
-      heroku_email: ${{secrets.HEROKU_EMAIL}}
-      # The appname to use for deploying/updating
-      heroku_app_name: ${{secrets.HEROKU_APP}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add build steps here, such as building your Spring Boot application
+
+      - name: Deploy to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          heroku_app_name: ${{secrets.HEROKU_APP}}
