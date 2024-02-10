@@ -22,7 +22,6 @@ jobs:
 
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
-        run: java -jar target/E-CommerceManagement-0.0-1-SNAPSHOT.jar
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
