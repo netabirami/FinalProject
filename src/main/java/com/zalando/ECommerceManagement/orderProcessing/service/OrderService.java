@@ -17,6 +17,7 @@ import com.zalando.ECommerceManagement.shoppingCartManagement.repository.CartIte
 import com.zalando.ECommerceManagement.shoppingCartManagement.repository.CartRepository;
 import com.zalando.ECommerceManagement.shoppingCartManagement.service.CartItemService;
 import com.zalando.ECommerceManagement.userManagement.exception.UserNotFoundException;
+import com.zalando.ECommerceManagement.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,21 +35,24 @@ public class OrderService {
     private final CartRepository cartRepository;
     private final CartItemRepository cartItemRepository;
     private final OrderProductRepository orderProductRepository;
+    private final UserService userService;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository, CartItemService cartItemService, ProductService productService, CartRepository cartRepository, CartItemRepository cartItemRepository, OrderProductRepository orderProductRepository) {
+    public OrderService(OrderRepository orderRepository, CartItemService cartItemService, ProductService productService, CartRepository cartRepository, CartItemRepository cartItemRepository, OrderProductRepository orderProductRepository, UserService userService) {
         this.orderRepository = orderRepository;
         this.cartItemService = cartItemService;
         this.productService = productService;
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
         this.orderProductRepository = orderProductRepository;
+        this.userService = userService;
     }
 
     public Order createNewOrder(OrderDto orderDto) {
         Cart existingCart = getCartById(orderDto.getCardId());
         Order newOrder = createOrderFromCart(existingCart);
         List<OrderProduct> orderProducts = createOrderProducts(newOrder, existingCart);
+        newOrder.setUser(existingCart.getUser());
         saveOrderAndProducts(newOrder, orderProducts);
         clearCartItems(existingCart);
         return newOrder;
@@ -122,5 +126,13 @@ public class OrderService {
     private void clearCartItems(Cart cart) {
         List<CartItem> cartItems = cartItemRepository.findByCartId(cart.getId());
         cartItemRepository.deleteAll(cartItems);
+    }
+    public void updateOrderStatus(Integer orderId, OrderStatus status) {
+        Order order = orderRepository.findById(orderId).orElseThrow(
+                () -> new NoSuchElementException("Order not found with ID:" + orderId)
+        );
+
+        order.setOrderStatus(status);
+        orderRepository.save(order);
     }
 }

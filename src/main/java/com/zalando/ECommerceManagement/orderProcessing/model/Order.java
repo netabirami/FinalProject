@@ -2,6 +2,7 @@ package com.zalando.ECommerceManagement.orderProcessing.model;
 
 import com.zalando.ECommerceManagement.productManagement.model.Product;
 import com.zalando.ECommerceManagement.shoppingCartManagement.model.Cart;
+import com.zalando.ECommerceManagement.userManagement.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,4 +33,8 @@ public class Order {
     @OneToMany
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private List<OrderProduct> products;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }
