@@ -46,25 +46,21 @@ public class OrderControllerTest {
                 1, "IPhone", 300.0, "13 inches, 8GB");
 
         OrderDto orderDto = new OrderDto(
-                1,
-                OrderStatus.PLACED,
-                List.of(newProductDto),
-                300.0
+                1
         );
         String postRequestBody = new ObjectMapper().writeValueAsString(orderDto);
 
         Cart cart = new Cart(1, new User());
-        Order order = new Order(1,cart,OrderStatus.PLACED);
+        Order order = new Order(1,cart,OrderStatus.PLACED, List.of(), null);
         when(cartRepository.findById(any())).thenReturn(Optional.of(cart));
-        when(orderService.createOrder(any())).thenReturn(order);
+        when(orderService.createNewOrder(any())).thenReturn(order);
 
-        mockMvc.perform(post("/order")
+        mockMvc.perform(post("/order/checkout")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(postRequestBody))
                 .andExpect(status().isOk());
 
-        verify(orderService, times(1)).createOrder(any(Order.class));
-        verify(cartRepository, times(1)).findById(any(Integer.class));
+        verify(orderService, times(1)).createNewOrder(any(OrderDto.class));
     }
 
     @Test

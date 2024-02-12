@@ -30,7 +30,13 @@ You have been assigned the task of developing a functional e-commerce shop backe
 > docker images
 > docker tag ecommerce-spring-boot netabirami/ecommerce-spring-boot
 > docker push netabirami/ecommerce-spring-boot
-> 
+
+### How to connect to H2 Database ?
+Please provide this path in JDBC URL input box 
+
+jdbc:h2:mem:testdb
+
+http://localhost:8082
 
 ### 2. Core Features
 
