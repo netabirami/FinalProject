@@ -6,6 +6,9 @@ You have been assigned the task of developing a functional e-commerce shop backe
 
 <img width="1353" alt="Screenshot 2024-02-10 at 22 40 39" src="https://github.com/netabirami/FinalProject/assets/144056783/85a2795c-31a0-455c-85b3-b35ed5cde30e">
 
+## E-Commerce Database Design
+<img width="490" alt="Screenshot 2024-02-22 at 08 23 32" src="https://github.com/netabirami/FinalProject/assets/144056783/51b9d3dc-430c-4bd6-8ba9-9e0e8fe2c261">
+
 ## Requirements
 
 ### 1. Project Setup
